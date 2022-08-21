@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Alert } from "react-bootstrap";
 import Home from "./home";
 import Registration from "./registration";
 import { BsPersonCircle, BsFillPersonFill, BsFillLockFill } from "react-icons/bs";
@@ -28,9 +27,6 @@ function Login() {
         } else if (!password) {
             toast.error("Password is required")
         } else if (password !== passwordSession || username !== usernameSession) {
-
-            console.log(password, passwordSession, "password")
-            console.log(username, usernameSession, "username")
             toast.error("Invalid username and password")
         } else {
             toast.success("Login success!")

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Form, Alert } from "react-bootstrap";
 import Login from "./login";
 import { BsFillPersonFill, BsEnvelopeFill, BsFillLockFill, BsPersonLinesFill, BsPersonBoundingBox } from "react-icons/bs";
 import { toast } from "react-toastify";
@@ -11,7 +10,6 @@ function Registration() {
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 
-	const [flag, setFlag] = useState(false);
 	const [login, setLogin] = useState(true);
 
 	function handleFormSubmit(e) {
@@ -21,7 +19,7 @@ function Registration() {
 
 		console.log(passwordRegex.test(password), "regex")
 
-		if(!name) toast.error("Name is required")
+		if(!name) toast.error("Full Name is required")
 		else if(!username) toast.error("Username is required")
 		else if(!email) toast.error("Email is required")
 		else if(!emailRegex.test(email)) toast.error("Invalid email address")
@@ -30,7 +28,8 @@ function Registration() {
 		else if(!passwordRegex.test(password)) toast.error("Password must min 8 character long, contain Uppercase, Lowercase, Numeric and special character")
 		else if(password !== confirmPassword) toast.error("Password and confirm password do not match")
 		else {
-			setFlag(false);
+			localStorage.setItem("name", JSON.stringify(name));
+			localStorage.setItem("email", JSON.stringify(email));
 			localStorage.setItem("username", JSON.stringify(username));
 			localStorage.setItem("password", JSON.stringify(password));
 			console.log(localStorage.getItem("password"), localStorage.getItem("username"));
